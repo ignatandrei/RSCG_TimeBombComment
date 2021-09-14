@@ -20,8 +20,8 @@
     <CompilerVisibleProperty Include="RootNamespace" />
   </ItemGroup>
   <ItemGroup>
-    <!--<None Include="readme.md" Pack="true" PackagePath="\" />-->
-    <!--<None Include="../../docs/static.png" Pack="true" PackagePath="\" />-->
+    <None Include="readme.md" Pack="true" PackagePath="\" />
+    <None Include="../../../docs/tb.png" Pack="true" PackagePath="\" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
   </ItemGroup>
@@ -29,12 +29,12 @@
     <Version>2021.8.31.2037</Version>
     <PackageVersion>2021.8.31.2037</PackageVersion>
     <Authors>Andrei Ignat</Authors>
-    <Description>This package make a time bomb from comments </Description>
+    <Description>This package make a time bomb from comment.</Description>
     <Title>TimeBombComment</Title>
     <PackageId>RSCG_TimeBombComment</PackageId>
     <PackageTags>C#;.NET;ASP.NET Core;Roslyn;RSCG</PackageTags>
-    <!--<PackageReadmeFile>readme.md</PackageReadmeFile>-->
-    <!--<PackageIcon>static.png</PackageIcon>-->
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageIcon>tb.png</PackageIcon>
     <RepositoryUrl>https://github.com/ignatandrei/RSCG_TimeBombComment</RepositoryUrl>
     <PackageProjectUrl>https://github.com/ignatandrei/RSCG_TimeBombComment</PackageProjectUrl>
     <RepositoryType>GIT</RepositoryType>
