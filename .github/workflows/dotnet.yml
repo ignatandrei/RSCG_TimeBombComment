@@ -26,6 +26,7 @@ jobs:
       run: |
         cd src 
         cd RSCG_TimeBombComment
+        cd RSCG_TimeBombComment
         dotnet build --no-restore
     - name: pack
       run: | 
