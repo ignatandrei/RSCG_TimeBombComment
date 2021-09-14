@@ -7,6 +7,7 @@ namespace RSCG_TimeBombComment
     [Generator]
     public class GenerateFromComments : ISourceGenerator
     {
+
         public void Execute(GeneratorExecutionContext context)
         {
             DiagnosticDescriptor dd=null;
@@ -17,9 +18,10 @@ namespace RSCG_TimeBombComment
             {
                 
                 var text = item.ToFullString().Replace(ReceiveComments.commentStart, "").Trim();
-                bool Error = false;
+                var severity = DiagnosticSeverity.Warning;
                 string message = text;
                 string desc = text;
+                
                 if (text.Length >= 10)
                 {
                     if (DateTime.TryParseExact(text.Substring(0,10), "yyyy-MM-dd", null,DateTimeStyles.AssumeUniversal,out var date))
@@ -27,12 +29,15 @@ namespace RSCG_TimeBombComment
                         message = text.Substring(10);
                         if (date <= DateTime.UtcNow.Date)
                         {
-                            Error = true;
+                            severity = DiagnosticSeverity.Error;
+                        }
+                        else
+                        {
+                            severity = DiagnosticSeverity.Hidden;
                         }
                     }
                 }
-                //dd = new DiagnosticDescriptor(text, text, text, "TB", (Error ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning),true);         
-                dd = new DiagnosticDescriptor(DiagnosticId, Title, message, Category, (Error ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning), isEnabledByDefault: true, description: desc);
+                dd = new DiagnosticDescriptor(DiagnosticId, Title, message, Category, severity, isEnabledByDefault: true, description: desc);
                 var dg=Diagnostic.Create(dd, item.GetLocation());
                 context.ReportDiagnostic(dg);
             }
