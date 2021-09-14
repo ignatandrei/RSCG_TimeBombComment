@@ -1,0 +1,42 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: |
+        cd src 
+        cd RSCG_TimeBombComment
+        dotnet restore
+    - name: Build
+      run: |
+        cd src 
+        cd RSCG_TimeBombComment
+        dotnet build --no-restore
+    - name: pack
+      run: | 
+        cd src     
+        cd RSCG_TimeBombComment
+        cd RSCG_TimeBombComment
+        dotnet pack -o nugetPackages --no-build --include-symbols --include-source 
+    - name: 'Upload nuget'
+      uses: actions/upload-artifact@v2
+      with:
+        name: RSCG_TimeBombComment_${{github.run_number}}
+        path: src/RSCG_TimeBombComment/RSCG_TimeBombComment/nugetPackages
+        retention-days: 1
+        
