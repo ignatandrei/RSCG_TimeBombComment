@@ -11,13 +11,13 @@ namespace RSCG_TimeBombComment
         public void Execute(GeneratorExecutionContext context)
         {
             DiagnosticDescriptor dd=null;
-            var rec = context.SyntaxReceiver as ReceiveComments;
+            var rec = context.SyntaxReceiver as ReceiveCommentsAndObsolete;
             if (rec == null)
                 return;
             foreach(var item in rec.candidates)
             {
                 
-                var text = item.ToFullString().Replace(ReceiveComments.commentStart, "").Trim();
+                var text = item.ToFullString().Replace(ReceiveCommentsAndObsolete.commentStart, "").Trim();
                 var severity = DiagnosticSeverity.Warning;
                 string message = text;
                 string desc = text;
@@ -47,7 +47,7 @@ namespace RSCG_TimeBombComment
         private static readonly string Category = "TB";
         public void Initialize(GeneratorInitializationContext context)
         {
-            context.RegisterForSyntaxNotifications(() => new ReceiveComments());
+            context.RegisterForSyntaxNotifications(() => new ReceiveCommentsAndObsolete());
         }
     }
 }

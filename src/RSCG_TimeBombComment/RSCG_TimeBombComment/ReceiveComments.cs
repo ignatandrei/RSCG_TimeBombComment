@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RSCG_TimeBombComment
 {
-    internal class ReceiveComments : ISyntaxReceiver
+    internal class ReceiveCommentsAndObsolete : ISyntaxReceiver
     {
         internal List<SyntaxTrivia> candidates = new List<SyntaxTrivia>();
 
@@ -31,6 +31,31 @@ namespace RSCG_TimeBombComment
                     }
                 }
             }
+            if (syntaxNode is AttributeSyntax)
+            {
+                var att = syntaxNode as AttributeSyntax;
+                var name = att.Name;
+                if (name is IdentifierNameSyntax)
+                {
+                    var id = name as IdentifierNameSyntax;
+                    if (id.Identifier.Text == "Obsolete")
+                    {
+                        var varBoolName = att.ArgumentList;
+                        var className = FindClassParent(att);
+                    }
+                }
+            }
+        }
+
+        ClassDeclarationSyntax FindClassParent(AttributeSyntax att)
+        {
+            var p = att.Parent;
+            while (p != null && ((p as ClassDeclarationSyntax) == null))
+            {
+                p = p.Parent;
+            }
+
+            return p as ClassDeclarationSyntax;
         }
     }
 }
