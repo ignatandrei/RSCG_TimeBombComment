@@ -8,9 +8,10 @@ namespace RSCG_TimeBombComment
 {
     internal class ReceiveCommentsAndObsolete : ISyntaxReceiver
     {
-        internal List<SyntaxTrivia> candidates = new List<SyntaxTrivia>();
-
+        internal List<SyntaxTrivia> candidatesComments = new List<SyntaxTrivia>();
+        internal List<AttributeSyntax> candidatesObsolete = new List<AttributeSyntax>();
         internal static string commentStart = "//TB:";
+        internal static string obsoleteStart = "TB_";
         public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
         {
 
@@ -26,7 +27,7 @@ namespace RSCG_TimeBombComment
                     {
                         if (item.ToFullString().Contains(commentStart))
                         {
-                            candidates.Add(item);
+                            candidatesComments.Add(item);
                         }
                     }
                 }
@@ -40,22 +41,13 @@ namespace RSCG_TimeBombComment
                     var id = name as IdentifierNameSyntax;
                     if (id.Identifier.Text == "Obsolete")
                     {
-                        var varBoolName = att.ArgumentList;
-                        var className = FindClassParent(att);
+                        candidatesObsolete.Add(att);
+                        
                     }
                 }
             }
         }
 
-        ClassDeclarationSyntax FindClassParent(AttributeSyntax att)
-        {
-            var p = att.Parent;
-            while (p != null && ((p as ClassDeclarationSyntax) == null))
-            {
-                p = p.Parent;
-            }
-
-            return p as ClassDeclarationSyntax;
-        }
+       
     }
 }
