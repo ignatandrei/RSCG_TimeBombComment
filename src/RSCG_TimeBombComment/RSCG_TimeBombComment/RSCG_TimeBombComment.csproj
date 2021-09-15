@@ -26,8 +26,8 @@
 
   </ItemGroup>
   <PropertyGroup>
-    <Version>2021.9.14.2237</Version>
-    <PackageVersion>2021.9.14.2237</PackageVersion>
+    <Version>2021.9.15.2200</Version>
+    <PackageVersion>2021.9.15.2200</PackageVersion>
     <Authors>Andrei Ignat</Authors>
     <Description>This package make a time bomb from comment.</Description>
     <Title>TimeBombComment</Title>
