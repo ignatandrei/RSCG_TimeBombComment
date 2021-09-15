@@ -12,3 +12,9 @@ The general form is
 //TB: yyyy-MM-dd whatever here
 
 
+Also,you can have this on methods
+[Obsolete("should be deleted", TB_20210915)]
+static string Test1()
+{
+    return "asdasd";
+}
