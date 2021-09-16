@@ -52,9 +52,11 @@ static string Test1()
 }
 ```
 
-THen RSCG will create a static const boolean TB_20210915 that will be true if the date is less than 2021-09-15
+Then RSCG will create a static const boolean TB_20210915 that will be true if the date is less than 2021-09-15
 
+## Other Roslyn Source Code Generators
 
+You can find more [Roslyn Source Code Generators](https://github.com/ignatandrei/rscg_examples/) at https://github.com/ignatandrei/rscg_examples/
 
 
 
