@@ -59,4 +59,4 @@ Then RSCG will create a static const boolean TB_20210915 that will be true if th
 You can find more [Roslyn Source Code Generators](https://github.com/ignatandrei/rscg_examples/) at https://github.com/ignatandrei/rscg_examples/
 
 
-
+## Please give a star
