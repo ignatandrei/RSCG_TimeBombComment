@@ -9,6 +9,7 @@ and you will see the error!
 
 The general form is
 
+```csharp
 //TB: yyyy-MM-dd whatever here
 
 
@@ -18,3 +19,16 @@ static string Test1()
 {
     return "asdasd";
 }
+
+```
+
+Also, when you want to test something in your code, but give error if compiled with release
+
+```csharp
+//Just for debug: if(args.length>0) throw new ArgumentException();
+//JFD: test
+```
+
+will raise error if compiled with 
+
+dotnet build -c release
