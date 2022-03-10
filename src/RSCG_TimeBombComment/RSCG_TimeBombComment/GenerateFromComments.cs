@@ -17,6 +17,26 @@ namespace RSCG_TimeBombComment
                 return;
             MakeCommentsDiagnostics(context, rec.candidatesComments.ToArray());
             MakeObsoleteVariables(context, rec.candidatesObsolete.ToArray());
+            if(context.Compilation?.Options?.OptimizationLevel == OptimizationLevel.Release)
+                MakeDebugToError(context, rec.candidatesDebug.ToArray());
+        }
+
+        private void MakeDebugToError(GeneratorExecutionContext context, SyntaxTrivia[] attributeSyntaxes)
+        {
+            if ((attributeSyntaxes?.Length ?? 0) == 0) return;
+
+            foreach (var item in attributeSyntaxes)
+            {
+                var severity = DiagnosticSeverity.Error;
+                var text = item.ToFullString().Replace(ReceiveCommentsAndObsolete.commentStart, "").Trim();
+                string message = text;
+                string desc = text;
+                var dd = new DiagnosticDescriptor(DiagnosticId, Title, message, Category, severity, isEnabledByDefault: true, description: desc);
+                var dg = Diagnostic.Create(dd, item.GetLocation());
+                context.ReportDiagnostic(dg);
+
+
+            }
         }
 
         private void MakeObsoleteVariables(GeneratorExecutionContext context, AttributeSyntax[] attributeSyntaxes)

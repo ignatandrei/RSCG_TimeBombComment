@@ -8,9 +8,13 @@ namespace RSCG_TimeBombComment
 {
     internal class ReceiveCommentsAndObsolete : ISyntaxReceiver
     {
+        internal List<SyntaxTrivia> candidatesDebug = new List<SyntaxTrivia>();
+
         internal List<SyntaxTrivia> candidatesComments = new List<SyntaxTrivia>();
         internal List<AttributeSyntax> candidatesObsolete = new List<AttributeSyntax>();
         internal static string commentStart = "//TB:";
+        internal static string commentDebug1 = "//JFD:";
+        internal static string commentDebug2 = "//Just for debug:";
         internal static string obsoleteStart = "TB_";
         public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
         {
@@ -25,9 +29,21 @@ namespace RSCG_TimeBombComment
                     var trivia = cu.DescendantTrivia().Where(it => it.IsKind(SyntaxKind.SingleLineCommentTrivia)).ToArray();
                     foreach (var item in trivia)
                     {
-                        if (item.ToFullString().Contains(commentStart))
+                        var text = item.ToFullString();
+                        if (text.IndexOf(commentStart,System.StringComparison.InvariantCultureIgnoreCase)>-1)
                         {
                             candidatesComments.Add(item);
+                            continue;
+                        }
+                        if (text.IndexOf(commentDebug1, System.StringComparison.InvariantCultureIgnoreCase) > -1)
+                        {
+                            candidatesDebug.Add(item);
+                            continue;
+                        }
+                        if (text.IndexOf(commentDebug2 ,System.StringComparison.InvariantCultureIgnoreCase) > -1)
+                        {
+                            candidatesDebug.Add(item);
+                            continue;
                         }
                     }
                 }
