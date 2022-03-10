@@ -1,8 +1,18 @@
-# RSCG_TimeBombComment
+# RSCG_TimeBombComment aka Time Bomb comment for technical debt
 
-Time Bomb comment for technical debt
+[![.NET](https://github.com/ignatandrei/RSCG_TimeBombComment/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ignatandrei/RSCG_TimeBombComment/actions/workflows/dotnet.yml)
 
-Just add :
+
+[![Nuget](https://img.shields.io/nuget/v/RSCG_TimeBombComment)](https://www.nuget.org/packages/RSCG_TimeBombComment/)
+
+Reference the nuget package 
+
+```xml
+    <PackageReference Include="RSCG_TimeBombComment" Version="2022.3.10.1720"  PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+```
+
+
+Then just add :
 
 //TB: 2021-09-13 this is a comment transformed into an error
 
@@ -11,11 +21,6 @@ and you will see the error!
 The general form is
 
 //TB: yyyy-MM-dd whatever here
-
-[![.NET](https://github.com/ignatandrei/RSCG_TimeBombComment/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ignatandrei/RSCG_TimeBombComment/actions/workflows/dotnet.yml)
-
-
-[![Nuget](https://img.shields.io/nuget/v/RSCG_TimeBombComment)](https://www.nuget.org/packages/RSCG_TimeBombComment/)
 
 ## Examples
 

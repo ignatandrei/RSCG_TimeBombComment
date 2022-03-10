@@ -1,4 +1,4 @@
-# RSCG_TimeBombComment aka Time Bomb comment for technical debt
+RSCG_TimeBombComment aka Time Bomb comment for technical debt
 
 Reference the nuget package 
 
