@@ -17,7 +17,7 @@ namespace Console_TimeBombComment
             //and here Test1 with Obsolete
             Console.WriteLine(Test1());
         }
-        [Obsolete("should be deleted", TB_20210915)]
+        [Obsolete("should be deleted", TB_20240915)]
         static string Test1()
         {
             return "asdasd";
