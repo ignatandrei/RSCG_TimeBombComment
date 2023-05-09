@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 namespace RSCG_TimeBombComment
 {
-    [Generator]
+    //[Generator]
     public class GenerateFromComments : ISourceGenerator
     {
     
@@ -24,7 +24,7 @@ namespace RSCG_TimeBombComment
         private void MakeDebugToError(GeneratorExecutionContext context, SyntaxTrivia[] attributeSyntaxes)
         {
             if ((attributeSyntaxes?.Length ?? 0) == 0) return;
-
+            if (attributeSyntaxes == null) return;
             foreach (var item in attributeSyntaxes)
             {
                 var severity = DiagnosticSeverity.Error;
@@ -49,11 +49,12 @@ namespace RSCG_TimeBombComment
                 if (id == null)
                     continue;
                 var args = syntaxNode.ArgumentList?.Arguments.ToArray();
-                if (args.Length != 2) //message and TB_ 
+                if (args?.Length != 2) //message and TB_ 
                     continue;
                 var TB_Date = args
                     .Select(it => it.Expression as IdentifierNameSyntax)
                     .Where(it => it != null)
+                    .Select(it=>it!)
                     .Select(it => it.Identifier.Text)
                     .FirstOrDefault(it => it.StartsWith(ReceiveCommentsAndObsolete.obsoleteStart));
                 if (TB_Date == null)
@@ -87,7 +88,7 @@ namespace RSCG_TimeBombComment
                 }
                 var varTb = $@"
 namespace {namespaceClass.Name.GetText()} {{
-    partial class {classForAttribute.Identifier.Text} {{ 
+    partial class {classForAttribute!.Identifier.Text} {{ 
         const bool {TB_Date} = {Error};
     }}
 }}
@@ -106,7 +107,7 @@ namespace {namespaceClass.Name.GetText()} {{
             }
 
         }
-        ClassDeclarationSyntax FindClassParent(AttributeSyntax att)
+        ClassDeclarationSyntax? FindClassParent(AttributeSyntax att)
         {
             var p = att.Parent;
             while (p != null && ((p as ClassDeclarationSyntax) == null))

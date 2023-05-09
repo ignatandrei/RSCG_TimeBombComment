@@ -22,6 +22,7 @@ namespace RSCG_TimeBombComment
             if (syntaxNode is CompilationUnitSyntax)
             {
                 var cu = syntaxNode as CompilationUnitSyntax;
+                if (cu == null) return ;
                 string s = syntaxNode.ToFullString();
 
                 if (s.Contains(commentStart))
@@ -51,13 +52,13 @@ namespace RSCG_TimeBombComment
             if (syntaxNode is AttributeSyntax)
             {
                 var att = syntaxNode as AttributeSyntax;
-                var name = att.Name;
+                var name = att?.Name;
                 if (name is IdentifierNameSyntax)
                 {
                     var id = name as IdentifierNameSyntax;
-                    if (id.Identifier.Text == "Obsolete")
+                    if (id?.Identifier.Text == "Obsolete")
                     {
-                        candidatesObsolete.Add(att);
+                        candidatesObsolete.Add(att!);
                         
                     }
                 }
