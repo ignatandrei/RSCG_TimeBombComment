@@ -32,7 +32,7 @@
 	<None Include="readme.txt" pack="true" PackagePath="." />
   </ItemGroup>
   <PropertyGroup>
-    <Version>2023.5.9.800</Version>
+    <Version>2023.5.9.1916</Version>
     <Authors>Andrei Ignat</Authors>
     <Description>This package make a time bomb from comment.</Description>
     <Title>TimeBombComment</Title>

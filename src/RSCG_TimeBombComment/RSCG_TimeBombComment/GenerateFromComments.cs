@@ -7,6 +7,7 @@ using System.Linq;
 namespace RSCG_TimeBombComment
 {
     //[Generator]
+    [Obsolete("see GenerateFromCommentsIncremental : IIncrementalGenerator")]
     public class GenerateFromComments : ISourceGenerator
     {
     
