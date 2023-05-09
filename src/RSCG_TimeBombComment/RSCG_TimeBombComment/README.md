@@ -3,7 +3,7 @@
 Reference the nuget package 
 
 ```xml
-    <PackageReference Include="RSCG_TimeBombComment" Version="2022.3.10.1720"  PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="RSCG_TimeBombComment" Version="2023.5.9.1916"  PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 ```
 
 
