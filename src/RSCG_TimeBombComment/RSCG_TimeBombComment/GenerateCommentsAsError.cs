@@ -18,8 +18,9 @@ internal class GenerateCommentsAsError
         context.RegisterSourceOutput(c,
            (spc, source) => Execute(source.Left, source.Right, spc));
     }
-    private static Diagnostic GenerateForTB(string text, SyntaxTrivia item)
+    private static Diagnostic GenerateForTB(SyntaxTrivia item)
     {
+        string text = item.ToFullString();
         string message = "";
 
         DiagnosticSeverity severity = DiagnosticSeverity.Warning;
@@ -59,7 +60,7 @@ internal class GenerateCommentsAsError
             var text = item.ToFullString();
             if (text.StartsWith(commentStart))
             {
-                spc.ReportDiagnostic(GenerateForTB(text, item));
+                spc.ReportDiagnostic(GenerateForTB(item));
                 continue;
             }
             if (isOnRelease)

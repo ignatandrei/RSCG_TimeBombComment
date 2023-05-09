@@ -69,7 +69,7 @@ internal class GenerateFromObsoleteAttribute
             return null;
         }
         var Error = (dateLimit <= DateTime.UtcNow.Date).ToString().ToLower();
-        var namespaceClass = classForAttribute.Parent as NamespaceDeclarationSyntax;
+        var namespaceClass = classForAttribute.Parent as BaseNamespaceDeclarationSyntax;
         if (namespaceClass is null)
         {
             var dd = new DiagnosticDescriptor(DiagnosticId, Title, $"cannot find namespace ", Category, severity, isEnabledByDefault: true, description: $"cannot parse {dateLimitString}");
