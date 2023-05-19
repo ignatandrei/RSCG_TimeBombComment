@@ -75,4 +75,6 @@ dotnet build -c release
 You can find more [Roslyn Source Code Generators](https://github.com/ignatandrei/rscg_examples/) at https://github.com/ignatandrei/rscg_examples/
 
 
-## Please give a star
+# More Roslyn Source Code Generators
+
+You can find more RSCG with examples at [Roslyn Source Code Generators](https://ignatandrei.github.io/RSCG_Examples/v2/)

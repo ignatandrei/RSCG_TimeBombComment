@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - "vRelease*"
+  workflow_dispatch:
 
 jobs:
   build:
