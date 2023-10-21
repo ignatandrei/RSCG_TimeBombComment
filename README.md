@@ -22,6 +22,12 @@ The general form is
 
 //TB: yyyy-MM-dd whatever here
 
+Now you can add
+```csharp
+//TODO this is just appearing in task list and as a warning
+//TODO 2025-09-23 and this is going to warning
+```
+
 ## Examples
 
     
