@@ -24,7 +24,16 @@ internal class GenerateCommentsAsError
         string message = "";
 
         DiagnosticSeverity severity = DiagnosticSeverity.Warning;
-        text = text.Substring(commentStart.Length).Trim();
+        if(text.StartsWith(commentStart))
+        {
+            text = text.Substring(commentStart.Length).Trim();
+
+        }
+        if (text.StartsWith(commentStart2))
+        {
+            text = text.Substring(commentStart2.Length).Trim();
+
+        }
         message = text;
         if (text.Length >= 10)//yyyy.MM.dd
         {
@@ -63,6 +72,11 @@ internal class GenerateCommentsAsError
                 spc.ReportDiagnostic(GenerateForTB(item));
                 continue;
             }
+            if (text.StartsWith(commentStart2))
+            {
+                spc.ReportDiagnostic(GenerateForTB(item));
+                continue;
+            }
             if (isOnRelease)
             {
                 if (text.StartsWith(commentDebug1) || text.StartsWith(commentDebug2))
@@ -89,6 +103,7 @@ internal class GenerateCommentsAsError
     private static readonly string Title = "TB";
     private static readonly string Category = "TB";
     internal static string commentStart = "//TB:";
+    internal static string commentStart2 = "//TODO";
     internal static string commentDebug1 = "//JFD:";
     internal static string commentDebug2 = "//Just for debug:";
     internal static string obsoleteStart = "TB_";
@@ -103,6 +118,10 @@ internal class GenerateCommentsAsError
         {
             var text = item.ToFullString();
             if (text.Contains(commentStart))
+            {
+                ret.Add(item);
+            }
+            if (text.Contains(commentStart2))
             {
                 ret.Add(item);
             }
@@ -124,6 +143,10 @@ internal class GenerateCommentsAsError
         {
             var str = node.ToFullString();
             if (str.Contains(commentStart))
+            {
+                return true;
+            }
+            if (str.Contains(commentStart2))
             {
                 return true;
             }

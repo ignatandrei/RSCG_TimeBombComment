@@ -3,7 +3,7 @@ RSCG_TimeBombComment aka Time Bomb comment for technical debt
 Reference the nuget package 
 
 ```xml
-    <PackageReference Include="RSCG_TimeBombComment" Version="2023.5.9.2110"  PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="RSCG_TimeBombComment" Version="2023.10.21.806"  PrivateAssets="all" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 ```
 
 
@@ -38,3 +38,9 @@ Also, when you want to test something in your code, but give error if compiled w
 will raise error if compiled with 
 
 dotnet build -c release
+
+Now you can add
+```csharp
+//TODO this is just appearing in task list and as a warning
+//TODO 2025-09-23 and this is going to warning
+```
