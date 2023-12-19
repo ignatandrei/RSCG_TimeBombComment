@@ -110,8 +110,9 @@ internal class GenerateCommentsAsError
 
     private static SyntaxTrivia[]? GetDataForGeneration(GeneratorSyntaxContext context)
     {
+        GlobalStatementSyntax a;
         List<SyntaxTrivia> ret = new();
-        var atts = context.Node as BlockSyntax;
+        var atts = context.Node as SyntaxNode;
         if (atts == null) return null;
         var tr = atts.DescendantTrivia();
         foreach (var item in tr)
@@ -139,7 +140,9 @@ internal class GenerateCommentsAsError
     }
     private static bool FindCorrectComment(SyntaxNode node)
     {
-        if (node is BlockSyntax block)
+        var x=node.ToFullString();
+        var l = x.IndexOf(commentStart2);
+        if (node is BlockSyntax || node is GlobalStatementSyntax)
         {
             var str = node.ToFullString();
             if (str.Contains(commentStart))
